@@ -38,7 +38,7 @@ namespace rush01.Controllers
 		/// Generates weather forecast by city name.
         /// </summary>
 		[HttpGet]
-		[Route("{city}")]	
+		[Route("{cityName}")]	
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetAsync(string cityName)
