@@ -39,6 +39,7 @@ namespace rush01.WeatherApi
 				c.IncludeXmlComments(xmlPath);
 			});
 			services.Configure<ServiceSettings>(Configuration.GetSection(nameof(ServiceSettings)));
+			services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
