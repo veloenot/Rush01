@@ -12,8 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using rush01.WeatherClient;
 
-namespace rush01
+namespace rush01.WeatherApi
 {
     public class Startup
     {
@@ -37,6 +38,7 @@ namespace rush01
 				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 				c.IncludeXmlComments(xmlPath);
 			});
+			services.Configure<ServiceSettings>(Configuration.GetSection(nameof(ServiceSettings)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

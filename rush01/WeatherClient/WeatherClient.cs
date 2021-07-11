@@ -3,30 +3,31 @@ using System.Net;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
+using rush01.WeatherClient.Models;
 
-namespace rush01
+namespace rush01.WeatherClient
 {
 	public class WeatherClient
 	{
-		private string ApiUrl { get; set; }
-		private string ApiKey { get; set; }
+		private const string ApiUrl = "http://api.openweathermap.org/data/2.5/weather?";
+		private readonly ServiceSettings _options;
 
-		public WeatherClient()
+		public WeatherClient(IOptions<ServiceSettings> options)
 		{
-			ApiUrl = "http://api.openweathermap.org/data/2.5/weather?";
-			ApiKey = "44d2e7921e2da1450e99c6cb47d08d0a";
+			_options = options.Value;
 		}
-
+		
 		public async Task<WeatherForecast> GetAsync(double latitude, double longitude)
 		{
-			var url = $"{ApiUrl}lat={latitude}&lon={longitude}&appid={ApiKey}";
+			var url = $"{ApiUrl}lat={latitude}&lon={longitude}&appid={_options.ApiKey}";
 			
 			return await HttpGetAsync<WeatherForecast>(url);
 		}
 
 		public async Task<WeatherForecast> GetAsync(string cityName)
 		{
-			var url = $"{ApiUrl}q={cityName}&appid={ApiKey}";
+			var url = $"{ApiUrl}q={cityName}&appid={_options.ApiKey}";
 			
 			return await HttpGetAsync<WeatherForecast>(url);
 		}
