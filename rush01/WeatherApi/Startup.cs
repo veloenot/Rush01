@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using rush01.WeatherClient;
+using rush01.WeatherClient.Models;
 
 namespace rush01.WeatherApi
 {
@@ -36,6 +37,10 @@ namespace rush01.WeatherApi
 
 				var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+				c.IncludeXmlComments(xmlPath);
+
+				xmlFile = $"{Assembly.GetAssembly(typeof(WeatherForecast)).GetName().Name}.xml";
+				xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 				c.IncludeXmlComments(xmlPath);
 			});
 			services.Configure<ServiceSettings>(Configuration.GetSection(nameof(ServiceSettings)));

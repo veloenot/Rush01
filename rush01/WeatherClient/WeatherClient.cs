@@ -10,7 +10,7 @@ namespace rush01.WeatherClient
 {
 	public class WeatherClient
 	{
-		private const string ApiUrl = "http://api.openweathermap.org/data/2.5/weather?";
+		private const string ApiUrl = "http://api.openweathermap.org/data/2.5/weather?units=metric&";
 		private readonly ServiceSettings _options;
 
 		public WeatherClient(IOptions<ServiceSettings> options)

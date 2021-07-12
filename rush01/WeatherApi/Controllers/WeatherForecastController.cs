@@ -27,11 +27,11 @@ namespace rush01.WeatherApi.Controllers
 		}		
 
         /// <summary>
-		/// Generates weather forecast by coordinates.
+		/// Gets weather forecast by coordinates.
         /// </summary>
 		[HttpGet]
 		[Route("coord")]	
-		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(WeatherForecast))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetAsync([FromQuery]double lat, [FromQuery]double lon)
 		{
@@ -46,11 +46,11 @@ namespace rush01.WeatherApi.Controllers
 		}
 
         /// <summary>
-		/// Generates weather forecast by city name.
+		/// Gets weather forecast by city name.
         /// </summary>
 		[HttpGet]
 		[Route("{cityName?}")]	
-		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(WeatherForecast))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetAsync(string cityName = null)
